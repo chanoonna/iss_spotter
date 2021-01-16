@@ -50,14 +50,11 @@ const fetchCoordsByIP = function(ip, callback) {
 const fetchISS = function(coords) {
   fetchPassBy(coords);
   
-  setInterval(() =>
-    requestJSON('http://api.open-notify.org/iss-now.json',
-    issLocation,
-    (body) => {
-      const latitude = JSON.parse(body).iss_position.latitude;
-      const longitude = JSON.parse(body).iss_position.longitude;
-      return { latitude, longitude };
-    }),
+  setInterval(() => requestJSON('http://api.open-notify.org/iss-now.json', issLocation, (body) => {
+    const latitude = JSON.parse(body).iss_position.latitude;
+    const longitude = JSON.parse(body).iss_position.longitude;
+    return { latitude, longitude };
+  }),
   1000
   );
 };
